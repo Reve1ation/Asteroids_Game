@@ -5,6 +5,7 @@ import pygame
 from Game_Objects.asteroid import Asteroid
 from Game_Objects.asteroidfield import AsteroidField
 from Game_Objects.player import Player
+from Game_Objects.score_panel import ScorePanel
 from Game_Objects.shot import Shot
 from utilities.constants import SCREEN_WIDTH, SCREEN_HEIGHT
 
@@ -16,6 +17,8 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    counter = 0
+    score_panel = ScorePanel(10, 10, 200, 50, (0, 0, 0), None, 24, (255, 255, 255))
 
     updatable_group = pygame.sprite.Group()
     drawable_group  = pygame.sprite.Group()
@@ -30,6 +33,9 @@ def main():
     AsteroidField()
 
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
+    score_panel = ScorePanel(10, 10, 200, 50, (0, 0, 0), None, 24, (255, 255, 255))
+    drawable_group.add(score_panel)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -42,11 +48,14 @@ def main():
         for asteroid in asteroids_group:
             if asteroid.collision(player):
                 print("Game over!")
+                print(f"Your score: {counter}")
                 sys.exit()
             for shot in shots_group:
                 if shot.collision(asteroid):
                     asteroid.split()
                     shot.kill()
+                    counter += 1
+                    score_panel.score = counter
 
         pygame.display.flip()
 
