@@ -2,7 +2,7 @@ import pygame
 import random
 
 from Game_Objects.asteroid import Asteroid
-from constants import ASTEROID_MAX_RADIUS, SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_SPAWN_RATE, ASTEROID_KINDS, \
+from utilities.constants import ASTEROID_MAX_RADIUS, SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_SPAWN_RATE, ASTEROID_KINDS, \
     ASTEROID_MIN_RADIUS
 
 
