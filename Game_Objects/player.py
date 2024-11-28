@@ -24,7 +24,7 @@ class Player(CircleShape):
         return [a, b, c]
 
     def draw(self, screen: Surface) -> None:
-        pygame.draw.polygon(screen, "white", self.triangle(), width=2)
+        pygame.draw.polygon(screen, "white", self.triangle(), dwidth=2)
 
     def update(self, dt: int) -> None:
         self.timer -= dt
